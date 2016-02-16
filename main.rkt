@@ -26,7 +26,8 @@
 
 ;; Code here
 
-(require "fanfy.rkt")
+(require "fanfy.rkt"
+         racket/cmdline)
 
 (module+ test
   ;; Tests to be run with raco test
@@ -44,4 +45,14 @@
 
 (module+ main
   ;; Main entry point, executed when run with the `racket` executable or DrRacket.
+  (define fanfic-url-or-id
+    (command-line
+     #:program "fanfy"
+     #:args (url-or-id)
+     url-or-id))
+  (let* ((url-or-id (if (string->number fanfic-url-or-id)
+                        (string->number fanfic-url-or-id)
+                        fanfic-url-or-id))
+         (ff-details (get-ff-details url-or-id)))
+    (display (foldl string-append "\n" (map cadr (caddr ff-details)))))
   )
