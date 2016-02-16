@@ -1,3 +1,0 @@
-fanfy
-=====
-README text here.
