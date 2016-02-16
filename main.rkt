@@ -26,8 +26,20 @@
 
 ;; Code here
 
+(require "fanfy.rkt")
+
 (module+ test
   ;; Tests to be run with raco test
+  (let ((mourn-the-dead-details (get-ff-details 11738243)))
+    (check-equal? (car mourn-the-dead-details) "RoeRemedy")
+    (check-equal? (cadr mourn-the-dead-details) "Mourn the dead")
+    (check-equal? (map car (caddr mourn-the-dead-details))
+                  '("Aftermath"
+                    "Salt"
+                    "In between"
+                    "New day"
+                    "Escape"
+                    "Survivors")))
   )
 
 (module+ main
