@@ -1,4 +1,4 @@
-#lang racket/base
+#lang racket
 
 (module+ test
   (require rackunit))
@@ -54,5 +54,5 @@
                         (string->number fanfic-url-or-id)
                         fanfic-url-or-id))
          (ff-details (get-ff-details url-or-id)))
-    (display (foldl string-append "\n" (map cadr (caddr ff-details)))))
+    (display (string-join (map cadr (caddr ff-details)) "\n")))
   )
